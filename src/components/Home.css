@@ -292,6 +292,7 @@
   width: 100%;
   height: 10px;
   background-color: #c0d4e6;
+  z-index: -1;
 }
 
 .main_news .title::before {
@@ -351,8 +352,8 @@
 }
 
 .main_link .container {
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 12.5rem;
+  padding-bottom: 12.5rem;
 }
 
 .main_link .cont_box {
@@ -361,6 +362,7 @@
   justify-content: center;
   flex-direction: column;
   color: white;
+  text-align: center;
 }
 
 .main_link .cont_box .tit {
@@ -375,7 +377,99 @@
 }
 
 @media (max-width: 767px) {
-  body {
-    border: 1px solid red;
+  .main_visual .visual_item .desc {
+    font-size: 2.5rem;
   }
+
+  .main_newmenu .cont_box {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .main_newmenu .cont_box .tit_wrap::before {
+    left: -260px;
+  }
+
+  .main_newmenu .cont_box .left_box {
+    width: 100%;
+  }
+
+  .main_newmenu .cont_box .left_box .subtit {
+    font-size: 1.25rem;
+  }
+
+  .main_newmenu .cont_box .left_box .tit {
+    font-size: 2.5rem;
+  }
+
+  .main_newmenu .cont_box .left_box .desc {
+    font-size: 1.125rem;
+  }
+
+  .main_newmenu .cont_box .right_box .slick-slider {
+    position: relative;
+    width: 100%;
+    top: 10px;
+    left: 0;
+  }
+
+  /* main intro */
+  .main_intro:before {
+    left: -26%;
+    width: 100%;
+    background-position: left top;
+  }
+
+  .main_intro .container {
+    padding-top: 15.75rem;
+    padding-bottom: 0;
+  }
+
+  .main_intro .cont_box .tit_wrap {
+    padding: 0 0 2.1875rem 0;
+  }
+
+  .main_intro .cont_box .right_box {
+    width: 100%;
+  }
+
+  .main_intro .cont_box .right_box .desc {
+    padding: 0 0 0 3.75rem;
+  }
+
+  /* main news */
+  .main_news {
+    padding: 8.75rem 0 4rem 0;
+  }
+
+  .main_news .title {
+    font-size: 2.5rem;
+  }
+
+  .main_news .title::before,
+  .main_news .title::after {
+    top: 1.25rem;
+  }
+
+  .main_news .title::before {
+    left: -70%;
+  }
+
+  .main_news .title::after {
+    right: -70%;
+  }
+
+  .main_news .news_wrap .item {
+    width: 50%;
+  }
+
+  .main_news .news_wrap .item:nth-child(3n) {
+    display: none;
+  }
+
+  .main_news .news_wrap .item .tit {
+    font-size: 1.25rem;
+  }
+
+  /* main link */
 }

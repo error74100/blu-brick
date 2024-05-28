@@ -138,7 +138,8 @@ a[class*='btn_basic'] {
 }
 button[class*='btn_basic'].big,
 a[class*='btn_basic'].big {
-  font-size: 1rem;
+  font-size: 1.25rem;
+  padding: 0 4.375rem;
   line-height: 3.625rem;
   text-align: center;
 }
@@ -543,5 +544,41 @@ a:hover {
   border: 3px solid #cdcdcd;
 }
 
-@media (max-width: 992px) {
+/* paging */
+.paging {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paging ul {
+  display: flex;
+}
+
+.paging li {
+  text-align: center;
+}
+
+.paging li.active {
+  background-color: var(--color-main);
+  border-radius: 50%;
+}
+
+.paging li a {
+  display: inline-block;
+  font-size: 13px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  color: var(--color-main);
+}
+
+.paging li.active a {
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
 }

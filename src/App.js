@@ -7,6 +7,8 @@ import News from './pages/News';
 import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MenuDetail from './pages/MenuDetail';
+import NewsDetail from './pages/NewsDetail';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/intro" element={<Intro />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/menuDetail" element={<MenuDetail />} />
           <Route path="/news" element={<News />} />
+          <Route path="/newsDetail" element={<NewsDetail />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 

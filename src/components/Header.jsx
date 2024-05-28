@@ -16,13 +16,19 @@ function Header() {
 
           <ul>
             <li>
-              <Link to="/intro">Intro</Link>
+              <Link to="/intro" id="intro">
+                Intro
+              </Link>
             </li>
             <li>
-              <Link to="/menu">Menu</Link>
+              <Link to="/menu" id="menu">
+                Menu
+              </Link>
             </li>
             <li>
-              <Link to="/News">News</Link>
+              <Link to="/news" id="news">
+                News
+              </Link>
             </li>
           </ul>
         </nav>

@@ -55,6 +55,7 @@
   font-weight: 500;
 }
 
+.header .header_nav ul li a.active,
 .header .header_nav ul li a:hover {
   color: var(--color-main);
 }
