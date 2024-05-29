@@ -56,6 +56,10 @@
   padding-top: 20px;
 }
 
+.menudetail_wrap .cont_box .desc span {
+  display: block;
+}
+
 .bott_btn {
   padding: 3.125rem 0 12.5rem 0;
   text-align: center;

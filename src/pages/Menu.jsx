@@ -1,10 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../components/Menu.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { Link } from 'react-router-dom';
+import MenuList from './MenuList';
 
 function Menu() {
+  const [type, setType] = useState('Signature');
+
+  const [signatureMenu, setSignatureMenu] = useState(false);
+  const [coffeeMenu, setCoffeeMenu] = useState(false);
+  const [cookiesMenu, setCookiesMenu] = useState(false);
+  const [beverageMenu, setBeverageMenu] = useState(false);
+
+  useEffect(() => {
+    setSignatureMenu(true);
+  }, []);
+
+  const tabmenuClickEvent = (e) => {
+    const val = e.target.getAttribute('data-type');
+
+    if (val === 'Signature') {
+      setType('Signature');
+
+      setSignatureMenu(true);
+      setCoffeeMenu(false);
+      setCookiesMenu(false);
+      setBeverageMenu(false);
+    } else if (val === 'Coffee') {
+      setType('Coffee');
+
+      setSignatureMenu(false);
+      setCoffeeMenu(true);
+      setCookiesMenu(false);
+      setBeverageMenu(false);
+    } else if (val === 'Cookies') {
+      setType('Cookies');
+
+      setSignatureMenu(false);
+      setCoffeeMenu(false);
+      setCookiesMenu(true);
+      setBeverageMenu(false);
+    } else if (val === 'Beverage') {
+      setType('Beverage');
+
+      setSignatureMenu(false);
+      setCoffeeMenu(false);
+      setCookiesMenu(false);
+      setBeverageMenu(true);
+    }
+  };
+
   return (
     <main>
       <div className="container">
@@ -13,86 +56,49 @@ function Menu() {
         <div className="tabmenu_wrap">
           <ul>
             <li>
-              <a href="#;" className="active">
+              <a
+                href="#!"
+                className={signatureMenu ? 'active' : ''}
+                onClick={tabmenuClickEvent}
+                data-type="Signature"
+              >
                 Signature
               </a>
             </li>
             <li>
-              <a href="#;">Coffee</a>
+              <a
+                href="#!"
+                className={coffeeMenu ? 'active' : ''}
+                onClick={tabmenuClickEvent}
+                data-type="Coffee"
+              >
+                Coffee
+              </a>
             </li>
             <li>
-              <a href="#;">Cookies</a>
+              <a
+                href="#!"
+                className={cookiesMenu ? 'active' : ''}
+                onClick={tabmenuClickEvent}
+                data-type="Cookies"
+              >
+                Cookies
+              </a>
             </li>
             <li>
-              <a href="#;">Beverage</a>
+              <a
+                href="#!"
+                className={beverageMenu ? 'active' : ''}
+                onClick={tabmenuClickEvent}
+                data-type="Beverage"
+              >
+                Beverage
+              </a>
             </li>
           </ul>
         </div>
 
-        <section className="menulist_wrap">
-          <ul>
-            <li>
-              <Link to="/menuDetail">
-                <span className="new">NEW</span>
-                <span className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2013/07/13/09/51/drink-156144_960_720.png"
-                    alt=""
-                  />
-                </span>
-                <span className="tit">딸기 라떼</span>
-              </Link>
-            </li>
-            <li>
-              <a href="#;">
-                <span className="new">NEW</span>
-                <span className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2013/07/13/09/51/drink-156144_960_720.png"
-                    alt=""
-                  />
-                </span>
-                <span className="tit">
-                  바닐라 크림 딸기 라떼 바닐라 크림 딸기 라떼
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="#;">
-                <span className="new">NEW</span>
-                <span className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2013/07/13/09/51/drink-156144_960_720.png"
-                    alt=""
-                  />
-                </span>
-                <span className="tit">딸기 라떼</span>
-              </a>
-            </li>
-            <li>
-              <a href="#;">
-                <span className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2013/07/13/09/51/drink-156144_960_720.png"
-                    alt=""
-                  />
-                </span>
-                <span className="tit">딸기 라떼</span>
-              </a>
-            </li>
-            <li>
-              <a href="#;">
-                <span className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2013/07/13/09/51/drink-156144_960_720.png"
-                    alt=""
-                  />
-                </span>
-                <span className="tit">딸기 라떼</span>
-              </a>
-            </li>
-          </ul>
-        </section>
+        <MenuList type={type} />
       </div>
     </main>
   );

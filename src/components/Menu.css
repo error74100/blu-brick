@@ -66,6 +66,7 @@
   line-height: 40px;
   color: white;
   background-color: var(--color-main);
+  z-index: 10;
 }
 
 .menulist_wrap .img {
