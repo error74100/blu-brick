@@ -9,6 +9,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MenuDetail from './pages/MenuDetail';
 import NewsDetail from './pages/NewsDetail';
+import Write from './components/Write';
+import Read from './components/Read';
 
 function App() {
   return (
@@ -23,6 +25,10 @@ function App() {
           <Route path="/menuDetail/:id" element={<MenuDetail />} />
           <Route path="/news" element={<News />} />
           <Route path="/newsDetail" element={<NewsDetail />} />
+
+          <Route path="/read" element={<Read />} />
+          <Route path="/write" element={<Write />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
