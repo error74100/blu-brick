@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../components/Menu.css';
-import MenuList from './MenuList';
+import MenuList from '../components/MenuList';
 
 function Menu() {
   const [type, setType] = useState('Signature');

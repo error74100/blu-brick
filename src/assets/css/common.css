@@ -577,6 +577,25 @@ a:hover {
   color: #fff;
 }
 
+.notFoundPage {
+  text-align: center;
+  padding: 150px 20px 150px;
+  margin: 100px 0 100px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+}
+
+.notFoundPage .tit {
+  font-size: 24px;
+  color: var(--font-color-black);
+  padding: 0 0 20px;
+  font-weight: 500;
+}
+
+.notFoundPage p {
+  padding: 0 0 50px;
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 14px;
