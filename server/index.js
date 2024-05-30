@@ -13,7 +13,7 @@ app.use(express.json({ extended: false }));
 const cors = require('cors');
 app.use(cors());
 
-app.get('/readfromserver', (req, res) => {
+app.get('/readfromserver', async (req, res) => {
   res.json({ message: 'Hey man from server' });
 });
 

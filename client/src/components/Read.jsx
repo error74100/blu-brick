@@ -11,6 +11,8 @@ function Read() {
           'http://localhost:5000/readfromserver'
         );
         const dataFromServer = response.data.message; // Extract the data from the response
+
+        console.log(response);
         setServerData(dataFromServer); // Update the state with the data
       } catch (error) {
         console.error('Error fetching data:', error);

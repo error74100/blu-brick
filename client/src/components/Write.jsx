@@ -29,14 +29,13 @@ function Write() {
         content: contentValue,
         date: formatDate(),
       });
-      console.log(
-        'titleValue: ' + titleValue + ' / ' + 'content: ' + contentValue
-      );
+
       alert('Data saved: ', titleValue, contentValue);
     } catch (error) {
       console.log('error while saving dude: ', error.message);
     }
   };
+
   return (
     <main className="sub_main">
       <section className="container">
