@@ -13,8 +13,20 @@ app.use(express.json({ extended: false }));
 const cors = require('cors');
 app.use(cors());
 
-app.get('/readfromserver', async (req, res) => {
-  res.json({ message: 'Hey man from server' });
+app.get('/readfromserver', (req, res) => {
+  DataModel.find()
+    .then((data) => res.json(data))
+    .catch((err) => res.json(err));
+});
+
+app.get('/newsDetailfromserver', (req, res) => {
+  const newId = req.query.id;
+
+  DataModel.find({ _id: newId })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => res.json(err));
 });
 
 app.post('/writetodatabase', async (req, res) => {

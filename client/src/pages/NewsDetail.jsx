@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../components/News.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 
 function NewsDetail() {
+  const [serverData, setServerData] = useState([]);
+  const params = useParams();
   const nav = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/newsDetailfromserver', {
+        params: {
+          id: params.id,
+        },
+      })
+      .then((data) => {
+        setServerData(data.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, [params.id]);
 
   const onClickBtn = () => {
     nav('/news');
@@ -16,10 +33,8 @@ function NewsDetail() {
 
         <section className="newsdetail_wrap">
           <div className="detail_info_wrap">
-            <div className="tit">
-              여름이니까~ 빙수의 계절이니까~ 여름이니까~ 빙수의 계절이니까~
-            </div>
-            <div className="date">2024-05-28</div>
+            <div className="tit">{serverData.title}</div>
+            <div className="date">{serverData.date}</div>
           </div>
 
           <div className="detail_contbox">
@@ -29,11 +44,7 @@ function NewsDetail() {
                 alt=""
               />
             </div>
-            <div className="cont">
-              지금 매장에서 만나보세요! 지금 매장에서 만나보세요! 지금 매장에서
-              <br />
-              만나보세요!
-            </div>
+            <div className="cont">{ReactHtmlParser(serverData.content)}</div>
           </div>
         </section>
 

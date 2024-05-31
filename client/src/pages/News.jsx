@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../components/News.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 
 function News() {
+  const [serverData, setServerData] = useState([]);
+  const nav = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/readfromserver')
+      .then((data) => setServerData(data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const onClickEvent = () => {
+    nav('/newsWrite');
+  };
+
   return (
     <main>
       <div className="container">
@@ -10,141 +26,55 @@ function News() {
 
         <section className="newslist_wrap">
           <div className="news_wrap">
-            <div className="item">
-              <Link to="/newsdetail">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
+            {serverData.map((data, index) => {
+              return (
+                <div className="item" key={index}>
+                  <Link to={`/newsdetail/${data._id}`}>
+                    <div className="img">
+                      <img
+                        src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div className="tit ellipsis">{data.title}</div>
+                    <div className="cont ellipsis">
+                      {ReactHtmlParser(data.content)}
+                    </div>
+                  </Link>
                 </div>
-                <div className="tit ellipsis">
-                  여름이니까~ 빙수의 계절이니까~ 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">
-                  지금 매장에서 만나보세요! 지금 매장에서 만나보세요! 지금
-                  매장에서 만나보세요!
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  22 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  33 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  33 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  33 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  33 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  33 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
-            <div className="item">
-              <a href="#">
-                <div className="img">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="tit ellipsis">
-                  33 여름이니까~ 빙수의 계절이니까~
-                </div>
-                <div className="cont ellipsis">지금 매장에서 만나보세요!</div>
-              </a>
-            </div>
+              );
+            })}
           </div>
+
           <div className="paging">
             <ul>
               <li className="active">
-                <a href="#">1</a>
+                <a href="#!">1</a>
               </li>
               <li>
-                <a href="#">2</a>
+                <a href="#!">2</a>
               </li>
               <li>
-                <a href="#">3</a>
+                <a href="#!">3</a>
               </li>
               <li>
-                <a href="#">4</a>
+                <a href="#!">4</a>
               </li>
               <li>
-                <a href="#">5</a>
+                <a href="#!">5</a>
               </li>
             </ul>
           </div>
+
+          <section className="btn_wrap">
+            <button
+              type="button"
+              onClick={onClickEvent}
+              className="btn_basic btn_basic2"
+            >
+              WRITE
+            </button>
+          </section>
         </section>
       </div>
     </main>

@@ -185,7 +185,8 @@ input[type='text']::-ms-clear {
 input[type='text'],
 input[type='password'],
 input[type='email'],
-input[type='tel'] {
+input[type='tel'],
+textarea {
   width: 100%;
   padding: 0 0.4375rem;
   border: 1px solid #d9d9d9;
@@ -214,6 +215,10 @@ input[disabled='disabled'],
 input[disabled] {
   background-color: #f2f2f2;
   color: #999;
+}
+
+textarea {
+  resize: none;
 }
 
 /* checkbox */
@@ -497,6 +502,18 @@ input[type='radio'] {
   padding: 0.25rem 0 0;
 }
 
+.form_group {
+  padding: 0 0 20px;
+}
+
+.form_group label {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--font-color-black);
+  padding: 0 0 5px;
+}
+
 .hide {
   display: none;
 }
@@ -549,6 +566,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px 10px;
 }
 
 .paging ul {

@@ -237,7 +237,7 @@ function Home() {
           <div className="title">NEWS</div>
           <div className="news_wrap">
             <div className="item">
-              <a href="#">
+              <a href="#!">
                 <div className="img">
                   <img
                     src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
@@ -254,7 +254,7 @@ function Home() {
               </a>
             </div>
             <div className="item">
-              <a href="#">
+              <a href="#!">
                 <div className="img">
                   <img
                     src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
@@ -268,7 +268,7 @@ function Home() {
               </a>
             </div>
             <div className="item">
-              <a href="#">
+              <a href="#!">
                 <div className="img">
                   <img
                     src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
