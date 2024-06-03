@@ -614,6 +614,26 @@ a:hover {
   padding: 0 0 50px;
 }
 
+/* ckeditor */
+.ck-editor__main h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.ck-editor__main h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.ck-editor__main h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.ck-editor__main strong {
+  font-weight: 600;
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 14px;

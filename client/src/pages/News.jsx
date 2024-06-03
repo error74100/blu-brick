@@ -11,7 +11,17 @@ function News() {
   useEffect(() => {
     axios
       .get('http://localhost:5000/readfromserver')
-      .then((data) => setServerData(data.data))
+      .then((data) => {
+        if (
+          new Date(data.data[0].date).valueOf() <
+          new Date(data.data[data.data.length - 1].date).valueOf()
+        ) {
+          const sortedData = data.data.slice(0).sort((a, b) => {
+            return new Date(b.date).valueOf() - new Date(a.date).valueOf();
+          });
+          setServerData(sortedData);
+        }
+      })
       .catch((err) => console.log(err));
   }, []);
 

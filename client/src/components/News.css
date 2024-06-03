@@ -70,7 +70,28 @@
 
 .newsdetail_wrap .detail_contbox .cont {
   font-size: 18px;
+  color: var(--font-color-black);
   padding: 50px 0 150px;
+}
+
+.newsdetail_wrap .detail_contbox .cont strong {
+  font-weight: 600;
+}
+
+/* news ckeditor */
+.newsdetail_wrap .detail_contbox h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.newsdetail_wrap .detail_contbox h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.newsdetail_wrap .detail_contbox h4 {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* editor */
