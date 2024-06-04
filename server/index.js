@@ -7,7 +7,7 @@ const connectDB = require('./Database');
 connectDB();
 
 const app = express();
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false, limit: '100mb' }));
 
 //we need cors middleware here because frontend and backend run on different ports.
 const cors = require('cors');
@@ -29,10 +29,17 @@ app.get('/newsDetailfromserver', (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.delete('/newsDelete', (req, res) => {
+  const newId = req.query.id;
+
+  DataModel.deleteOne({ _id: newId });
+});
+
 app.post('/writetodatabase', async (req, res) => {
   try {
-    const { title, content, date } = req.body;
-    const newData = new DataModel({ title, content, date });
+    const { title, image, content, date } = req.body;
+    const newData = new DataModel({ title, image, content, date });
+
     await newData.save();
     res.json({ message: 'Data saved successfully' });
   } catch (error) {

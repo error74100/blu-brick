@@ -64,8 +64,12 @@
   padding: 1.25rem 0 1.875rem 0px;
 }
 
+.newsdetail_wrap .detail_contbox .img {
+  text-align: center;
+}
+
 .newsdetail_wrap .detail_contbox .img img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .newsdetail_wrap .detail_contbox .cont {

@@ -26,6 +26,24 @@ function NewsDetail() {
     nav('/news');
   };
 
+  const onClickDelete = () => {
+    console.log(params.id);
+    if (window.confirm('삭제하시겠습니까?')) {
+      axios.delete('http://localhost:5000/newsDelete', {
+        headers: {
+          Authorization: '***',
+        },
+        data: {
+          _id: params.id,
+        },
+      });
+
+      alert('삭제완료');
+    } else {
+      alert('취소');
+    }
+  };
+
   return (
     <main>
       <div className="container">
@@ -39,10 +57,7 @@ function NewsDetail() {
 
           <div className="detail_contbox">
             <div className="img">
-              <img
-                src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                alt=""
-              />
+              <img src={serverData.image} alt="" />
             </div>
             <div className="cont">{ReactHtmlParser(serverData.content)}</div>
           </div>
@@ -55,6 +70,13 @@ function NewsDetail() {
             className="btn_basic btn_basic2 big round"
           >
             LIST
+          </button>
+          <button
+            type="button"
+            onClick={onClickDelete}
+            className="btn_basic btn_basic3 big round"
+          >
+            DELETE
           </button>
         </section>
       </div>

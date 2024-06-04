@@ -8,10 +8,43 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function NewsWrite() {
   const [title, setTitle] = useState('');
+  const [image, setImage] = useState('');
   const [content, setContent] = useState('');
   const titleRef = useRef(0);
 
   const nav = useNavigate();
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let baseURL = '';
+      // Make new FileReader
+      let reader = new FileReader();
+
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        baseURL = reader.result;
+        resolve(baseURL);
+      };
+    });
+  };
+
+  const fileChangeEvent = (e) => {
+    let file = e.target.files[0];
+
+    getBase64(file)
+      .then((result) => {
+        file['base64'] = result;
+
+        setImage(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const saveData = async () => {
     if (!title) {
@@ -28,6 +61,7 @@ function NewsWrite() {
     try {
       await axios.post('http://localhost:5000/writetodatabase', {
         title: title,
+        image: image,
         content: content,
         date: formatDate(),
       });
@@ -57,8 +91,17 @@ function NewsWrite() {
           </div>
 
           <div className="form_group">
-            <label>내용</label>
+            <label>이미지</label>
+            <input
+              type="file"
+              accept="image/png, image/jpeg, image/jpg"
+              name="image"
+              onChange={fileChangeEvent}
+            />
+          </div>
 
+          <div className="form_group">
+            <label>내용</label>
             <CKEditor
               editor={ClassicEditor}
               config={{
@@ -73,8 +116,6 @@ function NewsWrite() {
             />
           </div>
         </section>
-
-        <div></div>
 
         <section className="bott_btn news_type">
           <button

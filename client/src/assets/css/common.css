@@ -178,6 +178,15 @@ a[class*='btn_basic'].round {
   background-color: #3f86d0;
 }
 
+.btn_basic3 {
+  color: #fff !important;
+  border: 1px solid #d94444;
+  background-color: #b23737;
+}
+.btn_basic3:hover {
+  background-color: #d94444;
+}
+
 /* input */
 input[type='text']::-ms-clear {
   display: none !important;
@@ -197,6 +206,7 @@ textarea {
   color: #333;
 }
 input[type='file'] {
+  width: 100%;
   line-height: 1;
   padding: 0;
   border: 1px solid #d9d9d9;
