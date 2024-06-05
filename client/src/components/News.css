@@ -27,6 +27,15 @@
   max-width: 100%;
 }
 
+.newslist_wrap .news_wrap .item a .thumbnail {
+  display: block;
+  padding-top: 66%;
+  background-color: #ededed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .newslist_wrap .news_wrap .item .tit {
   font-size: 1.875rem;
   color: var(--color-main);
@@ -80,6 +89,10 @@
 
 .newsdetail_wrap .detail_contbox .cont strong {
   font-weight: 600;
+}
+
+.newsdetail_wrap .edit_thumbnail img {
+  width: 140px;
 }
 
 /* news ckeditor */

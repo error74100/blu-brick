@@ -1,18 +1,40 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../components/News.css';
-import { formatDate } from '../utill/formatDate';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-function NewsWrite() {
+function NewsEdit() {
+  const [serverData, setServerData] = useState([]);
+  const params = useParams();
+  const nav = useNavigate();
+
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [content, setContent] = useState('');
   const titleRef = useRef(0);
 
-  const nav = useNavigate();
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/newsDetailfromserver', {
+        params: {
+          id: params.id,
+        },
+      })
+      .then((data) => {
+        setServerData(data.data[0]);
+        setTitle(data.data[0].title);
+        setImage(data.data[0].image);
+        setContent(data.data[0].content);
+      })
+      .catch((err) => console.log(err));
+  }, [params.id]);
+
+  const onClickBtn = () => {
+    nav('/news');
+  };
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -32,12 +54,6 @@ function NewsWrite() {
     });
   };
 
-  const cancleEvent = () => {
-    if (window.confirm('취소 하시겠습니까?')) {
-      nav('/news');
-    }
-  };
-
   const fileChangeEvent = (e) => {
     let file = e.target.files[0];
 
@@ -52,7 +68,7 @@ function NewsWrite() {
       });
   };
 
-  const saveData = async () => {
+  const onClickSave = async () => {
     if (!title) {
       alert('제목을 입력하세요.');
       titleRef.current.focus();
@@ -64,26 +80,26 @@ function NewsWrite() {
       return;
     }
 
-    try {
-      await axios.post('http://localhost:5000/writetodatabase', {
-        title: title,
-        image: image,
-        content: content,
-        date: formatDate(),
-      });
-      alert('저장완료 되었습니다.');
-    } catch (error) {
-      console.log('error while saving dude: ', error.message);
-      alert('저장실패 하였습니다.');
+    if (window.confirm('수정 하시겠습니까?')) {
+      axios
+        .put(`http://localhost:5000/newsUpdate/${params.id}`, {
+          title: title,
+          image: image,
+          content: content,
+        })
+        .then((data) => {
+          alert('수정완료 되었습니다.');
+          nav(`/newsdetail/${params.id}`, { replace: true });
+          // window.location.reload();
+        })
+        .catch((err) => console.log(err));
     }
-    nav('/news', { replace: true });
   };
 
   return (
     <main>
       <div className="container">
         <section className="menu_tile">NEWS</section>
-
         <section className="newsdetail_wrap">
           <div className="form_group">
             <label>제목</label>
@@ -113,6 +129,7 @@ function NewsWrite() {
             <label>내용</label>
             <CKEditor
               editor={ClassicEditor}
+              data={content}
               config={{
                 placeholder: '내용을 입력하세요.',
                 // extraPlugins: [uploadPlugin],
@@ -125,19 +142,18 @@ function NewsWrite() {
             />
           </div>
         </section>
-
         <section className="bott_btn news_type">
           <button
             type="button"
-            onClick={cancleEvent}
+            onClick={onClickBtn}
             className="btn_basic btn_basic1 big round"
           >
-            CANCLE
+            LIST
           </button>
 
           <button
             type="button"
-            onClick={saveData}
+            onClick={onClickSave}
             className="btn_basic btn_basic2 big round"
           >
             SAVE
@@ -148,4 +164,4 @@ function NewsWrite() {
   );
 }
 
-export default NewsWrite;
+export default NewsEdit;

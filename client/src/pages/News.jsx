@@ -20,6 +20,8 @@ function News() {
             return new Date(b.date).valueOf() - new Date(a.date).valueOf();
           });
           setServerData(sortedData);
+        } else {
+          setServerData(data.data);
         }
       })
       .catch((err) => console.log(err));
@@ -41,10 +43,14 @@ function News() {
                 <div className="item" key={index}>
                   <Link to={`/newsdetail/${data._id}`}>
                     <div className="img">
-                      <img
-                        src="https://cdn.pixabay.com/photo/2024/05/15/12/31/lake-8763490_1280.jpg"
-                        alt=""
-                      />
+                      <span
+                        className="thumbnail"
+                        style={{
+                          backgroundImage: `url(
+                            ${data.image}
+                          )`,
+                        }}
+                      ></span>
                     </div>
                     <div className="tit ellipsis">{data.title}</div>
                     <div className="cont ellipsis">

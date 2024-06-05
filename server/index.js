@@ -20,19 +20,38 @@ app.get('/readfromserver', (req, res) => {
 });
 
 app.get('/newsDetailfromserver', (req, res) => {
-  const newId = req.query.id;
+  const newsId = req.query.id;
 
-  DataModel.find({ _id: newId })
+  DataModel.find({ _id: newsId })
     .then((data) => {
       res.json(data);
     })
     .catch((err) => res.json(err));
 });
 
-app.delete('/newsDelete', (req, res) => {
-  const newId = req.query.id;
+app.delete('/newsDelete/:id', (req, res) => {
+  const newsId = req.params.id;
 
-  DataModel.deleteOne({ _id: newId });
+  DataModel.deleteOne({ _id: newsId }).then((result) => {
+    res.json(result);
+  });
+});
+
+app.put('/newsUpdate/:id', async (req, res) => {
+  const filter = { _id: req.params.id };
+  const update = {
+    title: req.body.title,
+    image: req.body.image,
+    content: req.body.content,
+  };
+
+  // `doc` is the document _after_ `update` was applied because of
+  // `new: true`
+  let doc = await DataModel.findOneAndUpdate(filter, update, {
+    new: true,
+  }).then((result) => {
+    res.json(result);
+  });
 });
 
 app.post('/writetodatabase', async (req, res) => {

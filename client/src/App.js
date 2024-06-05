@@ -12,6 +12,7 @@ import NewsDetail from './pages/NewsDetail';
 import Write from './components/Write';
 import Read from './components/Read';
 import NewsWrite from './pages/NewsWrite';
+import NewsEdit from './pages/NewsEdit';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/menuDetail/:id" element={<MenuDetail />} />
           <Route path="/news" element={<News />} />
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
+          <Route path="/newsEdit/:id" element={<NewsEdit />} />
           <Route path="/newsWrite" element={<NewsWrite />} />
 
           <Route path="/read" element={<Read />} />

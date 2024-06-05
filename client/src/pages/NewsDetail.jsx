@@ -26,21 +26,20 @@ function NewsDetail() {
     nav('/news');
   };
 
-  const onClickDelete = () => {
-    console.log(params.id);
-    if (window.confirm('삭제하시겠습니까?')) {
-      axios.delete('http://localhost:5000/newsDelete', {
-        headers: {
-          Authorization: '***',
-        },
-        data: {
-          _id: params.id,
-        },
-      });
+  const onClickEdit = () => {
+    nav(`/newsEdit/${params.id}`);
+  };
 
-      alert('삭제완료');
-    } else {
-      alert('취소');
+  const onClickDelete = () => {
+    if (window.confirm('삭제 하시겠습니까?')) {
+      axios
+        .delete(`http://localhost:5000/newsDelete/${params.id}`, {})
+        .then((data) => {
+          alert('삭제완료 되었습니다.');
+          nav('/news', { replace: true });
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -67,9 +66,16 @@ function NewsDetail() {
           <button
             type="button"
             onClick={onClickBtn}
-            className="btn_basic btn_basic2 big round"
+            className="btn_basic btn_basic1 big round"
           >
             LIST
+          </button>
+          <button
+            type="button"
+            onClick={onClickEdit}
+            className="btn_basic btn_basic2 big round"
+          >
+            EDIT
           </button>
           <button
             type="button"
