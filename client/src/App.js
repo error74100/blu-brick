@@ -9,8 +9,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MenuDetail from './pages/MenuDetail';
 import NewsDetail from './pages/NewsDetail';
-import Write from './components/Write';
-import Read from './components/Read';
+import SampleWrite from './components/SampleWrite';
+import SampleRead from './components/SampleRead';
 import NewsWrite from './pages/NewsWrite';
 import NewsEdit from './pages/NewsEdit';
 
@@ -30,8 +30,8 @@ function App() {
           <Route path="/newsEdit/:id" element={<NewsEdit />} />
           <Route path="/newsWrite" element={<NewsWrite />} />
 
-          <Route path="/read" element={<Read />} />
-          <Route path="/write" element={<Write />} />
+          <Route path="/read" element={<SampleRead />} />
+          <Route path="/write" element={<SampleWrite />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

@@ -13,13 +13,21 @@ app.use(express.json({ extended: false, limit: '100mb' }));
 const cors = require('cors');
 app.use(cors());
 
-app.get('/readfromserver', (req, res) => {
+// news 목록.
+app.get('/api/newsList', (req, res) => {
+  const page = req.query.p || 0;
+  const newsPerPage = 3;
+
+  console.log(page);
+  console.log(newsPerPage);
+
   DataModel.find()
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
 
-app.get('/newsDetailfromserver', (req, res) => {
+// news 상세페이지.
+app.get('/api/newsDetail', (req, res) => {
   const newsId = req.query.id;
 
   DataModel.find({ _id: newsId })
@@ -29,7 +37,8 @@ app.get('/newsDetailfromserver', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-app.delete('/newsDelete/:id', (req, res) => {
+// news 삭제.
+app.delete('/api/newsDelete/:id', (req, res) => {
   const newsId = req.params.id;
 
   DataModel.deleteOne({ _id: newsId }).then((result) => {
@@ -37,7 +46,8 @@ app.delete('/newsDelete/:id', (req, res) => {
   });
 });
 
-app.put('/newsUpdate/:id', async (req, res) => {
+// news 수정.
+app.put('/api/newsUpdate/:id', async (req, res) => {
   const filter = { _id: req.params.id };
   const update = {
     title: req.body.title,
@@ -54,7 +64,8 @@ app.put('/newsUpdate/:id', async (req, res) => {
   });
 });
 
-app.post('/writetodatabase', async (req, res) => {
+// news 생성.
+app.post('/api/newsWrite', async (req, res) => {
   try {
     const { title, image, content, date } = req.body;
     const newData = new DataModel({ title, image, content, date });

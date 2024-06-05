@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Write() {
+function SampleWrite() {
   let [titleValue, setTitleValue] = useState('');
   let [contentValue, setContentValue] = useState('');
 
@@ -63,4 +63,4 @@ function Write() {
   );
 }
 
-export default Write;
+export default SampleWrite;

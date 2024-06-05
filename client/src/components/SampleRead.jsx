@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Read() {
+function SampleRead() {
   const [serverData, setServerData] = useState([]);
 
   useEffect(() => {
@@ -26,4 +26,4 @@ function Read() {
   );
 }
 
-export default Read;
+export default SampleRead;

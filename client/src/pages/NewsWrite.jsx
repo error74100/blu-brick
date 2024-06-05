@@ -65,7 +65,7 @@ function NewsWrite() {
     }
 
     try {
-      await axios.post('http://localhost:5000/writetodatabase', {
+      await axios.post('http://localhost:5000/api/newsWrite', {
         title: title,
         image: image,
         content: content,

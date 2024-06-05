@@ -10,7 +10,7 @@ function News() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/readfromserver')
+      .get('http://localhost:5000/api/newsList')
       .then((data) => {
         if (
           new Date(data.data[0].date).valueOf() <

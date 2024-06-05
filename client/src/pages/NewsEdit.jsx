@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../components/News.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import ReactHtmlParser from 'react-html-parser';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -18,7 +17,7 @@ function NewsEdit() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/newsDetailfromserver', {
+      .get('http://localhost:5000/api/newsDetail', {
         params: {
           id: params.id,
         },
@@ -82,7 +81,7 @@ function NewsEdit() {
 
     if (window.confirm('수정 하시겠습니까?')) {
       axios
-        .put(`http://localhost:5000/newsUpdate/${params.id}`, {
+        .put(`http://localhost:5000/api/newsUpdate/${params.id}`, {
           title: title,
           image: image,
           content: content,

@@ -11,7 +11,7 @@ function NewsDetail() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/newsDetailfromserver', {
+      .get('http://localhost:5000/api/newsDetail', {
         params: {
           id: params.id,
         },
@@ -33,7 +33,7 @@ function NewsDetail() {
   const onClickDelete = () => {
     if (window.confirm('삭제 하시겠습니까?')) {
       axios
-        .delete(`http://localhost:5000/newsDelete/${params.id}`, {})
+        .delete(`http://localhost:5000/api/newsDelete/${params.id}`, {})
         .then((data) => {
           alert('삭제완료 되었습니다.');
           nav('/news', { replace: true });
