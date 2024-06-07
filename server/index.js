@@ -14,16 +14,19 @@ const cors = require('cors');
 app.use(cors());
 
 // news 목록.
-app.get('/api/newsList', (req, res) => {
-  const page = req.query.p || 0;
-  const newsPerPage = 3;
+app.get('/api/newsList', async (req, res) => {
+  const { _page = 1, _limit = 8 } = req.query;
+  const options = {
+    page: _page,
+    limit: _limit,
+  };
+  const data = await DataModel.paginate({}, options);
 
-  console.log(page);
-  console.log(newsPerPage);
+  res.json(data);
 
-  DataModel.find()
-    .then((data) => res.json(data))
-    .catch((err) => res.json(err));
+  // DataModel.find()
+  //   .then((data) => res.json(data))
+  //   .catch((err) => res.json(err));
 });
 
 // news 상세페이지.

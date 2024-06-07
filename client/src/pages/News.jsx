@@ -12,16 +12,21 @@ function News() {
     axios
       .get('http://localhost:5000/api/newsList')
       .then((data) => {
+        const totalDocs = data.data.totalDocs;
+
+        console.log('totalDocs= ' + totalDocs);
+        console.log(data);
+
         if (
-          new Date(data.data[0].date).valueOf() <
-          new Date(data.data[data.data.length - 1].date).valueOf()
+          new Date(data.data.docs[0].date).valueOf() <
+          new Date(data.data.docs[data.data.docs.length - 1].date).valueOf()
         ) {
-          const sortedData = data.data.slice(0).sort((a, b) => {
+          const sortedData = data.data.docs.slice(0).sort((a, b) => {
             return new Date(b.date).valueOf() - new Date(a.date).valueOf();
           });
           setServerData(sortedData);
         } else {
-          setServerData(data.data);
+          setServerData(data.data.docs);
         }
       })
       .catch((err) => console.log(err));

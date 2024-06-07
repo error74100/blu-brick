@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const DataSchema = new mongoose.Schema({
   title: {
@@ -19,4 +20,7 @@ const DataSchema = new mongoose.Schema({
     required: false,
   },
 });
+
+DataSchema.plugin(mongoosePaginate);
+
 module.exports = mongoose.model('DataModel', DataSchema);

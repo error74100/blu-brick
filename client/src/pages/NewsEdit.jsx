@@ -6,7 +6,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function NewsEdit() {
-  const [serverData, setServerData] = useState([]);
   const params = useParams();
   const nav = useNavigate();
 
@@ -23,7 +22,6 @@ function NewsEdit() {
         },
       })
       .then((data) => {
-        setServerData(data.data[0]);
         setTitle(data.data[0].title);
         setImage(data.data[0].image);
         setContent(data.data[0].content);
